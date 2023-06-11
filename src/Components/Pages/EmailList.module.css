@@ -1,0 +1,9 @@
+.container{
+    padding:10px;
+    display: grid;
+    grid-template-columns:  1fr 1fr 0.4fr ;
+    justify-content: space-around;
+    background-color: blue;
+    color:white;
+    border-bottom: 2px solid black;
+}
