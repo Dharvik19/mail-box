@@ -9,6 +9,7 @@ import SideBar from './Components/Layout/SideBar';
 import { sendmaildata,getmaildata } from './Store/mail-actions';
 import { useSelector,useDispatch } from 'react-redux';
 import EmailDetails from './Components/Pages/EmailDetails';
+import Inbox from './Components/Pages/Inbox';
 let isInitial = true;
 function App() {
   const mails = useSelector((state)=>state.mail);
@@ -43,6 +44,7 @@ function App() {
       <Route  path='/login' element={<Login/>}></Route>
       <Route  path='/home' element={<Home/>}></Route>
       <Route path='/home/:id' element={<EmailDetails/>}></Route>
+      <Route path='/inbox' element={<Inbox/>}></Route>
     </Routes>
     </div>
     

@@ -16,26 +16,43 @@ useEffect(()=>{
 // useEffect(()=>{
 //     setData2(mails);
 // })
+let email=[];
 useEffect(()=>{
-    const fetchData= async ()=>{
+  async  function  fetchData(){
         const response = await fetch("https://mailboxclient-7e135-default-rtdb.firebaseio.com/mails.json");
         if(!response.ok){
             throw new Error("cant fetch")
         }
 
         const data = await response.json();
-        return data;            
+        // data.filter((item)=> item.id === id)
+        console.log(data.mails) ;            
+        setData2(data.mails);
     }   
     fetchData();
 },[])
+// email.filter((item)=>{item.id === id})
+// console.log(email);
     return(
-        <Container style={{position:"absolute",right:"0"}}> 
+        <Container style={{}}> 
             {data && <div>
             <h1>from: {props.email.to}</h1>
             <h3>title: {props.email.title}</h3>
             <h3>Body: {props.email.content}</h3>
             </div>
             }
+
+<div>
+      {data2?.filter((element)=>element.id === id).map((element, index) => {
+        return (
+          <div key={index}>
+            <h2>{element.to}</h2>
+            <h2>{element.title}</h2>
+            <h2>{element.content}</h2>
+          </div>
+        );
+      })}
+    </div>
         </Container>
         // <Container>
         //     {data2 ? <h2>{data}</h2> : <p>:pading</p>}

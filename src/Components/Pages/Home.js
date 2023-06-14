@@ -101,7 +101,7 @@ const Home=()=>{
     
     
     return(
-        <Container style={{padding:"0 5px", height:"100%"}}>
+        <Container style={{position:"relative",padding:"0 5px", height:"100%"}}>
             <h2 style={{marginTop:"2rem"}}>Emails</h2>
             {isVisible && <Container style={{width:"700px"}} className={classes.composeMail} >
            <form onSubmit={onSubmit}>
@@ -117,6 +117,7 @@ const Home=()=>{
                 </div>
             </form>
             </Container>}
+           {totalMails===0  &&  <h3 style={{position:"absolute",left:"50%",top:"50%",transform:"translate(-50%,-50%)"}}>You do not have any new mails</h3>}
             <ul className={classes.listContainer}style={{height:"80%",overflowY:"scroll"}}>
         {mails?.map((item) => (
           <EmailList
@@ -131,7 +132,7 @@ const Home=()=>{
         ))}
         
       </ul>
-{Number(totalMails)}
+
         </Container>
     )
 }

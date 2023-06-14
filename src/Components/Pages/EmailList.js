@@ -19,7 +19,8 @@ const EmailList = (props)=>{
     return(
         <div style = {{position: 'relative'}}> 
             <li className={classes.container}>
-                <h4 onClick={toggleHandler}>{to}</h4>
+                {/* <h4 onClick={toggleHandler}>{to}</h4> */}
+                {<h4><NavLink to={`/home/${id}`}>{to}</NavLink></h4>}
                 <h4>{title}</h4>
                 <button id={classes.deleteButton}onClick={deleteHandler}><AiFillDelete/></button>
                 {/* <div className={classes.content}>
