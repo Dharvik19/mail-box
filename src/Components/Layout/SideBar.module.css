@@ -1,0 +1,83 @@
+#compose{
+    background-color: #b5cae9;
+    /* background-color: #76d0d3; */
+    letter-spacing: 5px;
+    border-radius: 10px;
+    border: none;
+    padding: 10px 30px;
+    width: 100%;
+    font-size: 1.2rem;
+}
+#compose:hover{
+    background-color: #a1bbe2;
+}
+
+.buttonCotainer{
+ /* background-color: green; */
+ padding-top: 20px;
+ padding-bottom:25px ;
+ border-bottom: 2px solid rgb(156, 156, 156);
+ position: relative;
+}
+.SideBarItem span{
+    display: flex;
+    background-color: rgba(224, 224, 224, 0.658);
+    position: absolute;
+    right:0;
+    top:0;
+    width: 50px;
+    height: 30px;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    padding: 10px;
+    box-shadow: 0 10px 15px rgb(0 0 0 / 0.3);
+
+}
+.SideBarItem{
+    display: flex;
+    align-items: center;
+    font-size: 1.3rem;
+    /* background-color: #fff; */
+    margin: 15px 0;
+    gap: 0.4rem;
+    /* border-radius: 0px 20px 20px 0px ; */
+    position: relative;
+}
+.link{
+    text-decoration: none;
+    color: black;
+}
+.icons{
+    font-size: 1.5rem;
+}
+.inoutContainer{
+    padding: 10px 5px 10px 5px ;
+    /* margin-top: 2rem; */
+    /* border-top: 2px solid rgb(156, 156, 156); */
+    border-bottom: 2px solid rgb(156, 156, 156);
+}
+.SideBarItem:hover{
+    background-color: #e5e5e5;
+    border-radius: 0px 20px 20px 0px ;
+}
+
+.navConatiner{
+    padding: 10px 5px 10px 5px ;
+    border-bottom: 2px solid rgb(156, 156, 156);
+}
+.navConatiner li{
+    list-style-type: none;
+    font-size: 1.3rem;
+    /* padding: 10px 5px 10px 5px ; */
+    margin: 15px 8px;
+
+}
+.navConatiner li:hover{
+    background-color: #e5e5e5;
+    border-radius: 0px 20px 20px 0px ;
+}
+.nav-link{
+    margin: 20px 0;
+}

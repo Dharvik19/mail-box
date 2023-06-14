@@ -1,9 +1,26 @@
 .container{
     padding:10px;
     display: grid;
-    grid-template-columns:  1fr 1fr 0.4fr ;
-    justify-content: space-around;
-    background-color: blue;
-    color:white;
+    grid-template-columns:  1fr 1fr  0.4fr ;
+    justify-content: center;
+    align-items: center;
+    background-color: #ededed6c;
     border-bottom: 2px solid black;
+    position: relative;
+}
+#deleteButton{
+    border: none;
+    text-align: center;
+    font-size: 1.3rem;
+    position: absolute;
+    right: 20px;
+    background-color: transparent;
+    color: rgb(212, 37, 37);
+}
+#deleteButton:hover{
+   color: rgba(146, 29, 29, 0.9);
+}
+
+li >h4:first-of-type{
+    cursor: pointer;
 }

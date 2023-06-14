@@ -1,10 +1,11 @@
-import React,{useRef} from "react";
+import React,{useRef,useState} from "react";
 import { Container } from "react-bootstrap";
 import JoditEditor from 'jodit-react'
 import 'react-quill/dist/quill.snow.css';
 import { useDispatch,useSelector } from 'react-redux';
 import { mailActions } from "../../Store/mail-slice";
-import { addExpenseFetching } from "../../Store/mail-actions";
+import {AiOutlineArrowRight} from 'react-icons/ai'
+import classes from './Home.module.css'
 import EmailList  from './EmailList';
 // const Home =()=>{
 //     const dispatch = useDispatch();
@@ -81,49 +82,56 @@ const Home=()=>{
     const contentRef = useRef('');
    const isVisible = useSelector((state)=>state.ui.isVisible)
     const dispatch = useDispatch();
+    const [search,setSearch] = useState('');
     const onSubmit =(e)=>{
-       e.preventDefault();
-       if(toRef.current.value==="" || titleRef.current.value===""|| contentRef.current.value===""){
-        window.alert("please fill all fileds")
-        return;
+      e.preventDefault();
+      if(toRef.current.value==="" || titleRef.current.value===""|| contentRef.current.value===""){
+       window.alert("please fill all fileds")
+       return;
+      }
+       const emailContent={
+           id: Math.random().toString(36),
+           to: toRef.current.value,
+           title: titleRef.current.value,
+           content: contentRef.current.value
        }
-        const emailContent={
-            id: Math.random().toString(36),
-            to: toRef.current.value,
-            title: titleRef.current.value,
-            content: contentRef.current.value
-        }
-        console.log(email);
-      dispatch(mailActions.addMail(emailContent));
-    }
+       console.log(emailContent);
+     dispatch(mailActions.addMail(emailContent));
+   }
     
     
     return(
-        <Container style={{backgroundColor:"grey", height:"100vh"}}>
-            <h3>Emails</h3>
-        <Container style={{height:"auto",width:"700px",margin:"20px",position:'absolute',right:"0",bottom:"0",padding:"10px 20px",zIndex:"3000"}}>
-           {isVisible && <form onSubmit={onSubmit}>
+        <Container style={{padding:"0 5px", height:"100%"}}>
+            <h2 style={{marginTop:"2rem"}}>Emails</h2>
+            {isVisible && <Container style={{width:"700px"}} className={classes.composeMail} >
+           <form onSubmit={onSubmit}>
                 <label>to:</label>
                 <input type="text" ref={toRef}></input>
                 <label>title:</label>
                 <input type="text" ref={titleRef}></input>
+                <label>Body:</label>
                 <textarea ref={contentRef}></textarea>
-                <button type='submit'>Send</button>
-            </form>}
-            </Container>
-            <ul style={{backgroundColor:"red",padding:"0",height:"90%",overflowY:"scroll"}}>
-        {mails.map((item) => (
+                <div className={classes.button}>
+                <button type='submit'>Send </button>
+                <AiOutlineArrowRight style={{position:"absolute",right:"6%"}}/>
+                </div>
+            </form>
+            </Container>}
+            <ul className={classes.listContainer}style={{height:"80%",overflowY:"scroll"}}>
+        {mails?.map((item) => (
           <EmailList
             key={item.id}
             item={{
                 id: item.id,
                 to: item.to,
-                title: item.title
+                title: item.title,
+                content:item.content
             }}
           />
         ))}
+        
       </ul>
-
+{Number(totalMails)}
         </Container>
     )
 }

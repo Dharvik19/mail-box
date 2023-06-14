@@ -1,33 +1,53 @@
 import React,{useEffect} from 'react';
+import './App.css'
 import { Route,Routes } from 'react-router-dom';
 import Signup from './Components/Pages/Signup';
 import Login from './Components/Pages/Login';
 import Home from './Components/Pages/Home';
 import Header from './Components/Layout/header';
-import { SendMailData,FetchMailData } from './Store/mail-actions';
+import SideBar from './Components/Layout/SideBar';
+import { sendmaildata,getmaildata } from './Store/mail-actions';
 import { useSelector,useDispatch } from 'react-redux';
-let isInitial =true;
+import EmailDetails from './Components/Pages/EmailDetails';
+let isInitial = true;
 function App() {
-  const mails = useSelector((state)=>state.mail.mails);
+  const mails = useSelector((state)=>state.mail);
+  const isLoggedIn = useSelector((state)=>state.auth.isLoggedIn);
   const dispatch = useDispatch();
+ 
+
   useEffect(()=>{
-    dispatch(FetchMailData());
-  },[dispatch]);
-  useEffect(()=>{
-    if(isInitial){
+    dispatch(getmaildata())
+  },[dispatch])
+  useEffect(() => {
+    if (isInitial) {
       isInitial = false;
       return;
     }
-    dispatch(SendMailData(mails))
-  },[mails, dispatch]);
+
+    if (mails.changed) {
+     dispatch(sendmaildata(mails))
+    }
+  }, [mails, dispatch]);
+  // console.log(mails);
   return (
     <>
     <Header/>
+    <div className='mainContainer'> 
+    <div className='sideBar'>
+    {isLoggedIn && <SideBar />}
+    </div>
+    <div className='rightSection'>
     <Routes>
       <Route exact path='/' element={<Signup></Signup>}>  </Route>
       <Route  path='/login' element={<Login/>}></Route>
       <Route  path='/home' element={<Home/>}></Route>
+      <Route path='/home/:id' element={<EmailDetails/>}></Route>
     </Routes>
+    </div>
+    
+    </div>
+    
     </>
     );
 }

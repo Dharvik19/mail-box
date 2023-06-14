@@ -4,12 +4,13 @@ const mailSlice = createSlice({
     name:'mail',
     initialState: {
         mails:[],
-        totalMails:0,
-        changed:false
+        totalMails: 0,
+        changed:false,
     },
     reducers:{
         replaceMailList(state, action){
             state.mails = action.payload.mails;
+            state.totalMails = action.payload.totalMails;
         },
         addMail: (state, action) => {
             const newEmail = action.payload;
@@ -17,7 +18,8 @@ const mailSlice = createSlice({
                 id:newEmail.id,
                 to: newEmail.to,
                 title: newEmail.title,
-                content: newEmail.content
+                content: newEmail.content,
+                read: newEmail.read
             })
            state.totalMails++;
            state.changed = true;
@@ -27,10 +29,14 @@ const mailSlice = createSlice({
             state.mails = state.mails.filter((item)=>item.id!== id);
             state.totalMails--;
             state.changed = true;
+          },
+          readMails:(state,action)=>{
+            state.totalMails--;
+            state.mails.read= true;
           }
         
     }
 })
-
+ 
 export const mailActions = mailSlice.actions;
 export default mailSlice.reducer;
