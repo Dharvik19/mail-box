@@ -69,7 +69,7 @@ const email = emailId.replace(regex, '');
 export const sendmaildata=(mail)=>{
     return async(dispatch)=>{
         const sendRequest= async()=>{
-            const response = await fetch("https://mailboxclient-7e135-default-rtdb.firebaseio.com/mails.json",{
+            const response = await fetch(`https://mailboxclient-7e135-default-rtdb.firebaseio.com/mails/${email}.json`,{
                 method:"PUT",
                 body: JSON.stringify(
                     {
@@ -97,7 +97,7 @@ export const sendmaildata=(mail)=>{
 export const getmaildata =()=>{
     return async(dispatch)=>{
         const fetchData= async ()=>{
-            const response = await fetch("https://mailboxclient-7e135-default-rtdb.firebaseio.com/mails.json");
+            const response = await fetch(`https://mailboxclient-7e135-default-rtdb.firebaseio.com/mails/${email}.json`);
             if(!response.ok){
                 throw new Error("cant fetch")
             }

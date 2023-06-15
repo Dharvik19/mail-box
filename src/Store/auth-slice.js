@@ -6,7 +6,7 @@ const email = localStorage.getItem('email')
 const initialState = {
     token: token,
     email: email,
-    isLoggedIn: !!token
+    isLoggedIn: null
 }
 const authSlice = createSlice({
     name:'Auth',
