@@ -10,16 +10,27 @@ import { sendmaildata,getmaildata } from './Store/mail-actions';
 import { useSelector,useDispatch } from 'react-redux';
 import EmailDetails from './Components/Pages/EmailDetails';
 import Inbox from './Components/Pages/Inbox';
+import useHttp from './hooks/use-http';
 let isInitial = true;
 function App() {
   const mails = useSelector((state)=>state.mail);
   const isLoggedIn = useSelector((state)=>state.auth.isLoggedIn);
   const dispatch = useDispatch();
  
+  const emailId = localStorage.getItem('email');
+  const regex = /[.@]/g;
+  const email = emailId.replace(regex, '');
+
+  const sendRequest = useHttp();
 
   useEffect(()=>{
-    dispatch(getmaildata())
-  },[dispatch])
+    sendRequest({method: "get", url: `https://mailboxclient-7e135-default-rtdb.firebaseio.com/mails/${email}.json`})
+    console.log("using custom hook to get data")
+  },[]);
+
+  // useEffect(()=>{
+  //   dispatch(getmaildata())
+  // },[dispatch])
   useEffect(() => {
     if (isInitial) {
       isInitial = false;
@@ -28,15 +39,17 @@ function App() {
 
     if (mails.changed) {
      dispatch(sendmaildata(mails))
+    sendRequest({method:"Put", url: `https://mailboxclient-7e135-default-rtdb.firebaseio.com/mails/${email}.json`,allMails: mails})
+
     }
-  }, [mails, dispatch]);
+  }, [mails]);
   // console.log(mails);
   return (
     <>
     <Header/>
     <div className='mainContainer'> 
     <div className='sideBar'>
-    {isLoggedIn && <SideBar />}
+    {<SideBar />}
     </div>
     <div className='rightSection'>
     <Routes>
