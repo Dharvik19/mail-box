@@ -9,6 +9,9 @@ const {id} = useParams();
 const [data,setdata] = useState(undefined);
 const mails = useSelector((state)=>state.mail.mails);
 const [data2,setData2] = useState([]);
+const emailId = localStorage.getItem('email');
+const regex = /[.@]/g;
+const email = emailId.replace(regex, '');
 useEffect(()=>{
     setdata(props.email)
 }
@@ -16,10 +19,9 @@ useEffect(()=>{
 // useEffect(()=>{
 //     setData2(mails);
 // })
-let email=[];
 useEffect(()=>{
   async  function  fetchData(){
-        const response = await fetch("https://mailboxclient-7e135-default-rtdb.firebaseio.com/mails.json");
+        const response = await fetch(`https://mailboxclient-7e135-default-rtdb.firebaseio.com/mails/${email}.json`);
         if(!response.ok){
             throw new Error("cant fetch")
         }

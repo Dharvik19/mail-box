@@ -61,6 +61,9 @@
 
 import { mailActions } from "./mail-slice";
 
+if(!localStorage.getItem('email')){
+    localStorage.setItem('email', '')
+}
 const emailId = localStorage.getItem('email');
 const regex = /[.@]/g;
 const email = emailId.replace(regex, '');

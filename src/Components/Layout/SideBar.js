@@ -25,7 +25,7 @@ const SideBar = () => {
   navigate('/login');
   }
   return (
-    <Container style={{ marginTop: "2rem" }}>
+    <Container style={{ height:"100%",marginTop: "2rem",borderRight:" 3px solid rgb(156, 156, 156)"}}>
       <div className={classes.buttonCotainer}>
         {" "}
         {/* <span>{totalMails}</span> */}
@@ -33,18 +33,18 @@ const SideBar = () => {
           <GrAdd /> Compose{" "}
         </button>
       </div>
-      <div className={classes.inoutContainer}>
+     {  <div className={classes.inoutContainer}>
         <div className={classes.SideBarItem}>
-        <span>{totalMails}</span>
+        {/* <span>{totalMails}</span> */}
           <CiInboxIn className={classes.icons} />
-          <NavLink className={classes.link} to="/home">Inbox</NavLink>
+          <NavLink className={classes.link} to="/inbox">Inbox</NavLink>
         </div>
         <div className={classes.SideBarItem}>
         <span>{totalMails}</span>
           <CiInboxOut className={classes.icons} />
-          <NavLink className={classes.link} to="/home">OutBox</NavLink>
+          <NavLink className={classes.link} to="/home">SentBox</NavLink>
         </div>
-      </div>
+      </div>}
       <div>
       <div  className={classes.navConatiner} style={{padding:"0",margin:"0"}}>
                 {(
@@ -57,7 +57,7 @@ const SideBar = () => {
                     </NavLink>
                   </li>
                 )}
-                {!isLoggedIn && (
+                { (
                   <li className="nav-item ">
                     <NavLink to="/login" className="nav-link fs-5">
                       <AiIcons.AiOutlineLogin

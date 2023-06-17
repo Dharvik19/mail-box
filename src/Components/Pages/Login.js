@@ -4,6 +4,7 @@ import classes from './SignUp.module.css'
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { authActions } from '../../Store/auth-slice';
+import {NavLink} from 'react-router-dom';
 const Login = ()=>{
     
     const navigate = useNavigate();
@@ -56,6 +57,7 @@ const Login = ()=>{
                 <input type='password'ref={passwordRef}></input>
                 
                 <button className={classes.button} type='submit'>Submit</button>
+                <NavLink className={classes.NavLink} to='/'>Do not have an account? Signup</NavLink>
             </form>
             </div>
         </Container>
